@@ -491,7 +491,7 @@ async function demarrer(){
   try{
     const [a,v,d,ag,p]=await Promise.all(["articles","videos","depeches","agenda","parametres"].map(f=>lire(f).catch(()=>({}))));
     ARTICLES=(a.articles||[]).filter(x=>x&&x.titre&&x.publie!==false)
-      .map(x=>({...x,id:slug(x.titre)+"-"+String(x.date||"").slice(0,10).replace(/-/g,"")}))
+      .map(x=>({...x,id:x.fichier||(slug(x.titre)+"-"+String(x.date||"").slice(0,10).replace(/-/g,""))}))
       .sort((x,y)=>new Date(y.date)-new Date(x.date));
     VIDEOS=v.videos||[];
     rendreDepeches(d.depeches||[]); rendreAgenda(ag.evenements||[]); appliquerParametres(p||{});

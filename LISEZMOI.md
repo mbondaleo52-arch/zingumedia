@@ -48,7 +48,9 @@ Dans votre projet Netlify, menu **Project configuration → Identity** :
 
 Allez sur **votre-site.com/admin** et connectez-vous.
 
-- **📰 Articles** → *Ajouter article* : titre, rubrique, arrondissement, date, chapeau, photo, texte. Cochez **À LA UNE** pour l'article principal. Cliquez sur **Publier**.
+- **📰 Articles** → *Nouvel article* : titre, rubrique, arrondissement, date, chapeau, photo, texte. L'aperçu à droite montre l'article tel qu'il apparaîtra sur le site. Cochez **À LA UNE** pour l'article principal.
+- **Circuit de validation** (onglet *Workflow*) : chaque article passe par **Brouillon → En relecture → Prêt**, puis **Publier**. Le journaliste écrit, le rédacteur en chef relit et publie.
+- Filtres et regroupements : retrouvez vite les articles par rubrique, arrondissement, auteur, « À la une » ou « Masqués ».
 - **🎬 Zingũ TV** : collez le lien YouTube, la miniature s'affiche toute seule.
 - **⚡ Dernière minute** : les phrases du bandeau défilant.
 - **📅 Agenda** : les événements passés disparaissent automatiquement.
