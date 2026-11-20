@@ -1,13 +1,6 @@
 {
   "videos": [
     {
-      "rubrique": "societe",
-      "titre": "TACYNT TEST",
-      "lien": "https://youtu.be/fN2Hff0YrX4?si=yPlCv5_g7UF3-yEj",
-      "duree": "03:11",
-      "image": "/images/uploads/fiche-personnage-_-le-vieillard-africain.png"
-    },
-    {
       "titre": "Zingũ Journal : l'essentiel de la semaine (exemple)",
       "lien": "https://www.youtube.com",
       "duree": "18:42",
