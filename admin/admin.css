@@ -1,0 +1,78 @@
+/* ============================================================
+   Thème Zingũ pour l'espace rédaction (noir & or)
+   ============================================================ */
+:root{
+  --z-noir:#0b0b0b; --z-noir2:#161616; --z-or:#d4af37; --z-or-clair:#f0d47a; --z-or-fonce:#a8842a;
+  --z-creme:#f5f0e4; --z-ligne:#e6dcc4; --z-texte:#1d1a14;
+  --z-grad:linear-gradient(135deg,#f3dc8a 0%,#d4af37 45%,#a8842a 100%);
+}
+body{background:var(--z-creme)!important;font-family:'Inter',system-ui,sans-serif!important;color:var(--z-texte)}
+::selection{background:#f0d47a}
+
+/* ---------- Page de connexion ---------- */
+[class*="AuthenticationPage"]{background:radial-gradient(ellipse at top,#2a2208 0%,#0b0b0b 65%)!important;min-height:100vh}
+[class*="AuthenticationPage"] img,[class*="CustomLogoIcon"] img,[class*="CustomLogoIcon"]{border-radius:50%!important;box-shadow:0 0 0 3px var(--z-or),0 0 50px rgba(212,175,55,.35)!important;max-width:220px!important;max-height:220px!important}
+[class*="AuthenticationPage"]::before{content:"ESPACE RÉDACTION";position:absolute;top:28px;left:0;right:0;text-align:center;font:700 13px 'Cinzel',serif;letter-spacing:6px;color:var(--z-or)}
+[class*="AuthenticationPage"] button,[class*="LoginButton"]{background:var(--z-grad)!important;color:#111!important;font:700 15px 'Inter'!important;padding:12px 28px!important;border-radius:999px!important;border:none!important;box-shadow:0 6px 24px rgba(212,175,55,.3)!important;height:auto!important}
+[class*="AuthenticationPage"] a,[class*="AuthenticationPage"] span{color:#bdb6a6!important}
+
+/* ---------- Barre du haut ---------- */
+[class*="-AppHeader-css"],[class$="-AppHeader"]{background:var(--z-noir)!important;border-bottom:2px solid var(--z-or-fonce)!important;box-shadow:0 4px 18px rgba(0,0,0,.25)!important}
+[class*="-AppHeaderContent"]{min-height:60px}
+[class*="-AppHeaderContent"]::before{content:"";width:38px;height:38px;border-radius:50%;margin:0 12px 0 4px;flex-shrink:0;background:url(/images/logo.jpg) center/cover;box-shadow:0 0 0 2px var(--z-or)}
+[class*="-AppHeaderNavList"]::before{content:"ZINGŨ";font:900 20px 'Cinzel',serif;letter-spacing:3px;margin-right:22px;align-self:center;background:var(--z-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+[class*="-AppHeaderNavLink"],[class*="-AppHeaderButton"]{color:#d9d3c5!important;font-weight:600!important;border-bottom:3px solid transparent!important}
+[class*="-AppHeaderNavLink"]:hover,[class*="-AppHeaderButton"]:hover{color:var(--z-or-clair)!important}
+[class*="-AppHeaderNavLink"][class*="Active"],[class*="-AppHeaderNavLink"].active,[class*="-AppHeaderNavLink"][aria-current="page"]{color:var(--z-or)!important;border-bottom-color:var(--z-or)!important}
+[class*="-AppHeaderNavLink"] svg,[class*="-AppHeaderButton"] svg{color:inherit!important;fill:currentColor}
+[class*="-AppHeaderSiteLink"]{color:var(--z-or)!important;font-weight:600!important}
+[class*="-AppHeaderActions"] button[class*="Quick"],[class*="-AppHeaderQuickNewButton"]{background:var(--z-grad)!important;color:#111!important;border-radius:999px!important;font-weight:700!important}
+
+/* ---------- Colonne de gauche ---------- */
+[class*="-SidebarContainer"]{border-top:4px solid var(--z-or)!important;border-radius:10px!important;box-shadow:0 6px 24px rgba(60,45,10,.08)!important}
+[class*="-SidebarHeading"]{font:900 18px 'Cinzel',serif!important;letter-spacing:1.5px;color:var(--z-noir)!important}
+[class*="-SidebarNavLink"]{font-weight:600!important;color:#3b362b!important;border-left-width:3px!important}
+[class*="-SidebarNavLink"]:hover{background:#fbf5e3!important;color:var(--z-or-fonce)!important}
+[class*="-SidebarNavLink"][class*="Active"],[class*="-SidebarNavLink"].active,[class*="-SidebarNavLink"][aria-current="page"]{background:#fbf3dc!important;color:#8a6a1f!important;border-left-color:var(--z-or)!important}
+[class*="-SidebarNavLink"] svg{color:var(--z-or-fonce)!important}
+[class*="-SearchInput"]:focus{box-shadow:inset 0 0 0 2px var(--z-or)!important}
+
+/* ---------- En-tête de collection ---------- */
+[class*="-CollectionTopContainer"]{background:linear-gradient(135deg,#1a1508,#0b0b0b 70%)!important;border-radius:10px!important;border:1px solid #3a2c0f!important;box-shadow:0 8px 30px rgba(0,0,0,.18)!important}
+[class*="-CollectionTopHeading"]{font:900 24px 'Cinzel',serif!important;letter-spacing:1.5px;background:var(--z-grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+[class*="-CollectionTopDescription"]{color:#cfc7b4!important;font-size:14px!important;line-height:1.5!important}
+[class*="-CollectionTopNewButton"]{background:var(--z-grad)!important;color:#111!important;border-radius:999px!important;font-weight:700!important;padding:0 22px!important;box-shadow:0 4px 16px rgba(212,175,55,.35)!important}
+[class*="-ViewControls"] [class*="Button"][class*="Active"],[class*="-ViewControlsButton"][class*="Active"]{color:var(--z-or-fonce)!important}
+
+/* ---------- Cartes d'articles ---------- */
+[class*="-ListCard"],[class*="-GridCard"],[class*="-EntryCard"]{border-radius:8px!important;border:1px solid var(--z-ligne)!important;transition:transform .15s,box-shadow .15s,border-color .15s!important}
+[class*="-ListCard"]:hover,[class*="-GridCard"]:hover{border-color:var(--z-or)!important;box-shadow:0 6px 18px rgba(168,132,42,.18)!important;transform:translateY(-1px)}
+[class*="-ListCard"]{border-left:4px solid var(--z-or)!important}
+[class*="-CardHeading"],[class*="-ListCardTitle"]{font-family:'Source Serif 4',Georgia,serif!important;font-weight:700!important;color:var(--z-texte)!important}
+[class*="-GroupHeading"]{font:700 16px 'Cinzel',serif!important;color:var(--z-or-fonce)!important;letter-spacing:1px}
+
+/* ---------- Tableau de bord « Workflow » ---------- */
+[class*="-WorkflowTop"]{background:linear-gradient(135deg,#1a1508,#0b0b0b 70%)!important;border-radius:10px!important}
+[class*="-WorkflowTopHeading"]{font:900 24px 'Cinzel',serif!important;color:var(--z-or)!important}
+[class*="-WorkflowTopDescription"]{color:#cfc7b4!important}
+[class*="-ColumnHeader"]{font:700 15px 'Cinzel',serif!important;letter-spacing:1px;border-radius:8px 8px 0 0!important}
+[class*="-WorkflowCard"]{border-radius:8px!important;border-left:4px solid var(--z-or)!important}
+
+/* ---------- Éditeur ---------- */
+[class*="-ToolbarContainer"]{border-bottom:2px solid var(--z-or)!important;box-shadow:0 4px 14px rgba(0,0,0,.08)!important}
+[class*="-BackCollection"]{font-weight:700!important;color:var(--z-noir)!important}
+[class*="-ToolbarButton"],[class*="-PublishButton"],[class*="-SaveButton"]{border-radius:999px!important;font-weight:700!important}
+[class*="-ToolbarSubSectionFirst"] [class*="-ToolbarButton"]:first-child,[class*="-SaveButton"]{background:var(--z-noir)!important;color:var(--z-or)!important}
+[class*="-PublishButton"],[class*="-PublishedToolbarButton"],[class*="-StatusButton"]{background:var(--z-grad)!important;color:#111!important}
+[class*="-ControlPaneContainer"]{background:var(--z-creme)!important}
+[class*="-ControlContainer"]{margin-bottom:26px!important}
+[class*="-FieldLabel"]{font:700 12px 'Inter'!important;letter-spacing:.8px;text-transform:uppercase;border-radius:6px 6px 0 0!important}
+[class*="-ControlContainer"]:focus-within > [class*="-FieldLabel"],[class*="-ControlContainer"]:focus-within [class*="-ControlTopbar"] [class*="-FieldLabel"]{background:var(--z-or-fonce)!important;color:#fff!important}
+[class*="-ControlContainer"] input,[class*="-ControlContainer"] textarea,[class*="-ControlContainer"] [class*="-TextControl"]{border-radius:0 8px 8px 8px!important;background:#fff!important}
+[class*="-ControlContainer"]:focus-within input,[class*="-ControlContainer"]:focus-within textarea,[class*="-ControlContainer"]:focus-within [class*="-EditorControlBar"],[class*="-ControlContainer"]:focus-within [data-slate-editor]{border-color:var(--z-or-fonce)!important}
+[class*="-ControlHint"]{color:#7d735e!important;font-style:italic;font-size:12.5px!important}
+[class*="-ToggleBackground"]{background:#cfc6b0!important}
+[class*="-ToggleContainer"][aria-checked="true"] [class*="-ToggleBackground"],[class*="-ToggleContainer"][class*="Active"] [class*="-ToggleBackground"]{background:var(--z-or-fonce)!important}
+[class*="-FileWidgetButton"],[class*="-AddButton"]{border-radius:999px!important;background:var(--z-noir)!important;color:var(--z-or)!important;font-weight:700!important}
+[class*="-PreviewPaneContainer"]{background:#141414!important}
+[class*="-EditorControlBar"]{border-radius:0 8px 0 0!important}

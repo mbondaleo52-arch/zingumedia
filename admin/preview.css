@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap");
+html,body{background:#0b0b0b;margin:0;color:#ece8df;font-family:'Inter',sans-serif}
+.z-page{min-height:100vh;background:radial-gradient(ellipse at top,#1a1608 0%,#0b0b0b 60%);padding-bottom:40px}
+.z-bar{display:flex;align-items:center;gap:12px;padding:16px 28px;border-bottom:2px solid #a8842a;background:#000}
+.z-logo{font:900 24px 'Cinzel',serif;letter-spacing:3px;background:linear-gradient(135deg,#f3dc8a,#d4af37 45%,#a8842a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.z-sub{font:700 10px 'Cinzel',serif;letter-spacing:4px;color:#d4af37}
+.z-badge{margin-left:auto;background:#d4af37;color:#111;font:700 11px 'Inter';letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.z-art{max-width:760px;margin:28px auto 0;background:#141414;border:1px solid #2a2a2a;border-radius:10px;overflow:hidden}
+.z-img{width:100%;height:340px;object-fit:cover;display:block}
+.z-noimg{height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(180deg,#140e05,#6a4a14 60%,#e8bd4f);color:#111}
+.z-noimg span{font:900 20px 'Cinzel',serif;color:#0b0b0b}
+.z-noimg small{font-size:13px;color:#1f170a}
+.z-legende{font-size:12.5px;color:#a19d94;font-style:italic;padding:8px 36px 0}
+.z-txt{padding:30px 36px 40px}
+.z-tag{font:700 11px 'Inter';letter-spacing:1.3px;text-transform:uppercase;color:#d4af37;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.z-une{background:#d4af37;color:#111;padding:3px 9px;border-radius:999px;letter-spacing:.5px}
+.z-cache{background:#5a1a1a;color:#ffd0d0;padding:3px 9px;border-radius:999px}
+h1{font:700 34px/1.18 'Source Serif 4',Georgia,serif;margin:10px 0 14px;color:#f3efe6}
+.z-meta{font-size:13px;color:#a19d94}
+.z-meta b{color:#ece8df}
+.z-chapo{font:400 19px/1.55 'Source Serif 4',Georgia,serif;color:#d8d3c7;margin:22px 0;padding-left:16px;border-left:3px solid #d4af37}
+.z-vide{opacity:.35;font-style:italic}
+.z-corps{font:400 17.5px/1.75 'Source Serif 4',Georgia,serif;color:#e2ddd2}
+.z-corps p{margin:0 0 18px}
+.z-corps h2,.z-corps h3{font-size:23px;margin:28px 0 12px;color:#f0d47a}
+.z-corps h4{font-size:19px}
+.z-corps blockquote{border-left:3px solid #d4af37;margin:20px 0;padding:4px 0 4px 18px;font-style:italic;color:#d8d3c7}
+.z-corps a{color:#f0d47a}
+.z-corps img{max-width:100%;border-radius:6px}
+.z-corps ul,.z-corps ol{padding-left:24px}

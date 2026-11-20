@@ -1,72 +1,147 @@
-# Back-office Zingũ Médias (Decap CMS)
+# ============================================================
+#  Espace rédaction Zingũ Médias (Decap CMS)
+# ============================================================
 backend:
   name: git-gateway
   branch: main
+  squash_merges: true
   commit_messages:
+    create: "Nouveau : {{slug}}"
     update: "Mise à jour : {{slug}}"
+    delete: "Suppression : {{slug}}"
+    uploadMedia: "Photo ajoutée : {{path}}"
+    deleteMedia: "Photo supprimée : {{path}}"
+
+# Circuit de validation : Brouillon → En relecture → Prêt → Publié
+publish_mode: editorial_workflow
 
 locale: fr
 logo_url: /images/logo.jpg
-site_url: /
-display_url: /
+site_url: https://zingumedia.netlify.app
+display_url: https://zingumedia.netlify.app
+show_preview_links: true
 
-# Les photos envoyées depuis le back-office sont rangées ici
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
 collections:
-  - name: contenu
-    label: "Contenus du site"
-    editor:
-      preview: false
+
+  # ---------------------------------------------------------- ARTICLES
+  - name: articles
+    label: "📰 Articles"
+    label_singular: "article"
+    description: "Rédigez, illustrez et publiez vos articles. Enregistrez d'abord en brouillon, passez « En relecture », puis « Prêt » et cliquez sur Publier. L'article apparaît sur le site environ 1 minute après."
+    folder: "content/articles"
+    format: json
+    extension: json
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{titre}}"
+    identifier_field: titre
+    preview_path: "/#{{filename}}"
+    summary: "{{titre}}  —  {{arrondissement}} · {{date | date('DD/MM/YYYY à HH:mm')}}"
+    sortable_fields: ["date", "titre", "rubrique", "arrondissement", "auteur"]
+    view_filters:
+      - { label: "⭐ À la une", field: une, pattern: true }
+      - { label: "Masqués", field: publie, pattern: false }
+      - { label: "Politique", field: rubrique, pattern: "politique" }
+      - { label: "Société", field: rubrique, pattern: "societe" }
+      - { label: "Culture", field: rubrique, pattern: "culture" }
+      - { label: "Économie", field: rubrique, pattern: "economie" }
+      - { label: "Sport", field: rubrique, pattern: "sport" }
+      - { label: "Éducation", field: rubrique, pattern: "education" }
+      - { label: "Santé", field: rubrique, pattern: "sante" }
+      - { label: "Faits divers", field: rubrique, pattern: "faitsdivers" }
+    view_groups:
+      - { label: "Arrondissement", field: arrondissement }
+      - { label: "Rubrique", field: rubrique }
+      - { label: "Auteur", field: auteur }
+    fields:
+      - label: "Titre"
+        name: titre
+        widget: string
+        hint: "Court et précis : 60 à 90 caractères. Ex : « Bafang : le marché central rénové »."
+        pattern: ['^.{10,140}$', "Le titre doit faire entre 10 et 140 caractères."]
+      - label: "Rubrique"
+        name: rubrique
+        widget: select
+        options: &rubriques
+          - { label: "Politique", value: politique }
+          - { label: "Société", value: societe }
+          - { label: "Culture & Traditions", value: culture }
+          - { label: "Économie", value: economie }
+          - { label: "Sport", value: sport }
+          - { label: "Éducation", value: education }
+          - { label: "Santé", value: sante }
+          - { label: "Faits divers", value: faitsdivers }
+      - label: "Arrondissement"
+        name: arrondissement
+        widget: select
+        default: "Bafang"
+        options: ["Bafang", "Bana", "Bandja", "Banka", "Kékem", "Tout le Haut-Nkam"]
+      - label: "Date de publication"
+        name: date
+        widget: datetime
+        date_format: "DD/MM/YYYY"
+        time_format: "HH:mm"
+        hint: "L'heure affichée sur le site (« Il y a 2 h »)."
+      - label: "Auteur"
+        name: auteur
+        widget: string
+        default: "Rédaction Zingũ"
+      - label: "Chapeau"
+        name: chapo
+        widget: text
+        hint: "Le résumé affiché sous le titre : 1 ou 2 phrases, 250 caractères maximum."
+        pattern: ['^[\s\S]{0,250}$', "250 caractères maximum."]
+      - label: "Photo principale"
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+        hint: "Format paysage, moins de 1 Mo. Sans photo, une illustration de la rubrique s'affiche."
+      - label: "Légende / crédit photo"
+        name: legende
+        widget: string
+        required: false
+        hint: "Ex : « Le marché de Bafang samedi matin. Photo : Zingũ Médias »."
+      - label: "Texte de l'article"
+        name: corps
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+        hint: "Utilisez les intertitres (H2) pour aérer, et les citations pour les témoignages."
+      - label: "⭐ Mettre À LA UNE"
+        name: une
+        widget: boolean
+        default: false
+        hint: "Le plus récent article « À la une » occupe le grand encadré de la page d'accueil."
+      - label: "🔥 Afficher dans « Les plus lus »"
+        name: populaire
+        widget: boolean
+        default: false
+      - label: "Visible sur le site"
+        name: publie
+        widget: boolean
+        default: true
+        hint: "Décochez pour retirer l'article du site sans le supprimer."
+
+  # ---------------------------------------------------------- VIDÉOS
+  - name: tv
+    label: "🎬 Zingũ TV"
+    description: "Les 5 premières vidéos de la liste s'affichent sur la page d'accueil. Collez simplement le lien YouTube : la miniature est automatique."
+    editor: { preview: false }
     files:
-
-      # ---------------- ARTICLES ----------------
-      - name: articles
-        label: "📰 Articles"
-        file: "data/articles.json"
-        fields:
-          - label: "Articles"
-            name: articles
-            widget: list
-            add_to_top: true
-            collapsed: true
-            label_singular: "article"
-            summary: "{{fields.titre}}  ·  {{fields.date | date('DD/MM/YYYY HH:mm')}}"
-            fields:
-              - { label: "Titre", name: titre, widget: string }
-              - label: "Rubrique"
-                name: rubrique
-                widget: select
-                options:
-                  - { label: "Politique", value: politique }
-                  - { label: "Société", value: societe }
-                  - { label: "Culture & Traditions", value: culture }
-                  - { label: "Économie", value: economie }
-                  - { label: "Sport", value: sport }
-                  - { label: "Éducation", value: education }
-                  - { label: "Santé", value: sante }
-                  - { label: "Faits divers", value: faitsdivers }
-              - label: "Arrondissement"
-                name: arrondissement
-                widget: select
-                options: ["Bafang", "Bana", "Bandja", "Banka", "Kékem", "Tout le Haut-Nkam"]
-              - { label: "Date de publication", name: date, widget: datetime, date_format: "DD/MM/YYYY", time_format: "HH:mm" }
-              - { label: "Auteur", name: auteur, widget: string, default: "Rédaction Zingũ" }
-              - { label: "Chapeau (résumé en 1 ou 2 phrases)", name: chapo, widget: text }
-              - { label: "Photo principale", name: image, widget: image, required: false, choose_url: false }
-              - { label: "Légende / crédit photo", name: legende, widget: string, required: false }
-              - { label: "Texte de l'article", name: corps, widget: markdown, buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list], editor_components: [image] }
-              - { label: "Mettre À LA UNE", name: une, widget: boolean, default: false }
-              - { label: "Afficher dans « Les plus lus »", name: populaire, widget: boolean, default: false }
-              - { label: "Publié (décocher pour masquer)", name: publie, widget: boolean, default: true }
-
-      # ---------------- VIDÉOS ----------------
       - name: videos
-        label: "🎬 Zingũ TV (vidéos)"
+        label: "Vidéos de la page d'accueil"
         file: "data/videos.json"
         fields:
-          - label: "Vidéos (les 5 premières s'affichent)"
+          - label: "Vidéos"
             name: videos
             widget: list
             add_to_top: true
@@ -75,26 +150,23 @@ collections:
             summary: "{{fields.titre}}"
             fields:
               - { label: "Titre", name: titre, widget: string }
-              - { label: "Lien (YouTube, Facebook…)", name: lien, widget: string }
+              - label: "Lien de la vidéo"
+                name: lien
+                widget: string
+                hint: "Lien YouTube (ou Facebook, TikTok…)."
+                pattern: ['^https?://', "Collez un lien qui commence par https://"]
               - { label: "Durée (ex : 05:30)", name: duree, widget: string, required: false }
-              - label: "Rubrique (pour l'illustration par défaut)"
-                name: rubrique
-                widget: select
-                default: societe
-                options:
-                  - { label: "Politique", value: politique }
-                  - { label: "Société", value: societe }
-                  - { label: "Culture & Traditions", value: culture }
-                  - { label: "Économie", value: economie }
-                  - { label: "Sport", value: sport }
-                  - { label: "Éducation", value: education }
-                  - { label: "Santé", value: sante }
-                  - { label: "Faits divers", value: faitsdivers }
-              - { label: "Miniature (facultatif — automatique pour YouTube)", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Rubrique (illustration par défaut)", name: rubrique, widget: select, default: societe, options: *rubriques }
+              - { label: "Miniature personnalisée", name: image, widget: image, required: false, choose_url: false, hint: "Facultatif : automatique pour YouTube." }
 
-      # ---------------- DÉPÊCHES ----------------
+  # ---------------------------------------------------------- DÉPÊCHES
+  - name: flash
+    label: "⚡ Dernière minute"
+    description: "Les phrases qui défilent dans le bandeau rouge en haut du site. Gardez-les courtes."
+    editor: { preview: false }
+    files:
       - name: depeches
-        label: "⚡ Dernière minute (bandeau)"
+        label: "Bandeau « Dernière minute »"
         file: "data/depeches.json"
         fields:
           - label: "Dépêches"
@@ -104,32 +176,42 @@ collections:
             label_singular: "dépêche"
             field: { label: "Texte", name: texte, widget: string }
 
-      # ---------------- AGENDA ----------------
+  # ---------------------------------------------------------- AGENDA
+  - name: agenda
+    label: "📅 Agenda"
+    description: "Les événements à venir du Haut-Nkam. Les événements passés disparaissent automatiquement du site."
+    editor: { preview: false }
+    files:
       - name: agenda
-        label: "📅 Agenda du Haut-Nkam"
+        label: "Agenda du Haut-Nkam"
         file: "data/agenda.json"
         fields:
-          - label: "Événements (seuls ceux à venir s'affichent)"
+          - label: "Événements"
             name: evenements
             widget: list
             collapsed: true
             label_singular: "événement"
-            summary: "{{fields.date | date('DD/MM/YYYY')}} — {{fields.titre}}"
+            summary: "{{fields.date | date('DD/MM/YYYY')}} — {{fields.titre}} ({{fields.lieu}})"
             fields:
               - { label: "Date", name: date, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
               - { label: "Événement", name: titre, widget: string }
-              - { label: "Lieu", name: lieu, widget: string }
+              - { label: "Lieu", name: lieu, widget: string, default: "Bafang" }
 
-      # ---------------- PARAMÈTRES ----------------
+  # ---------------------------------------------------------- PARAMÈTRES
+  - name: reglages
+    label: "⚙️ Paramètres"
+    description: "Coordonnées et réseaux sociaux affichés sur le site."
+    editor: { preview: false }
+    files:
       - name: parametres
-        label: "⚙️ Paramètres du site"
+        label: "Paramètres du site"
         file: "data/parametres.json"
         fields:
           - { label: "Slogan", name: slogan, widget: string }
           - { label: "Page Facebook (lien)", name: facebook, widget: string, required: false }
           - { label: "Chaîne YouTube (lien)", name: youtube, widget: string, required: false }
           - { label: "Compte TikTok (lien)", name: tiktok, widget: string, required: false }
-          - { label: "Numéro WhatsApp (ex : 237 6XX XX XX XX)", name: whatsapp, widget: string, required: false }
+          - { label: "Numéro WhatsApp", name: whatsapp, widget: string, required: false, hint: "Avec l'indicatif, ex : 237 6XX XX XX XX" }
           - { label: "Téléphone de la rédaction", name: telephone, widget: string, required: false }
           - { label: "E-mail de la rédaction", name: email, widget: string, required: false }
           - { label: "Adresse", name: adresse, widget: string, required: false }
