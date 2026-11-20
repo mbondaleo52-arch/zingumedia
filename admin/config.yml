@@ -1,0 +1,135 @@
+# Back-office Zingũ Médias (Decap CMS)
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    update: "Mise à jour : {{slug}}"
+
+locale: fr
+logo_url: /images/logo.jpg
+site_url: /
+display_url: /
+
+# Les photos envoyées depuis le back-office sont rangées ici
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: contenu
+    label: "Contenus du site"
+    editor:
+      preview: false
+    files:
+
+      # ---------------- ARTICLES ----------------
+      - name: articles
+        label: "📰 Articles"
+        file: "data/articles.json"
+        fields:
+          - label: "Articles"
+            name: articles
+            widget: list
+            add_to_top: true
+            collapsed: true
+            label_singular: "article"
+            summary: "{{fields.titre}}  ·  {{fields.date | date('DD/MM/YYYY HH:mm')}}"
+            fields:
+              - { label: "Titre", name: titre, widget: string }
+              - label: "Rubrique"
+                name: rubrique
+                widget: select
+                options:
+                  - { label: "Politique", value: politique }
+                  - { label: "Société", value: societe }
+                  - { label: "Culture & Traditions", value: culture }
+                  - { label: "Économie", value: economie }
+                  - { label: "Sport", value: sport }
+                  - { label: "Éducation", value: education }
+                  - { label: "Santé", value: sante }
+                  - { label: "Faits divers", value: faitsdivers }
+              - label: "Arrondissement"
+                name: arrondissement
+                widget: select
+                options: ["Bafang", "Bana", "Bandja", "Banka", "Kékem", "Tout le Haut-Nkam"]
+              - { label: "Date de publication", name: date, widget: datetime, date_format: "DD/MM/YYYY", time_format: "HH:mm" }
+              - { label: "Auteur", name: auteur, widget: string, default: "Rédaction Zingũ" }
+              - { label: "Chapeau (résumé en 1 ou 2 phrases)", name: chapo, widget: text }
+              - { label: "Photo principale", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Légende / crédit photo", name: legende, widget: string, required: false }
+              - { label: "Texte de l'article", name: corps, widget: markdown, buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list], editor_components: [image] }
+              - { label: "Mettre À LA UNE", name: une, widget: boolean, default: false }
+              - { label: "Afficher dans « Les plus lus »", name: populaire, widget: boolean, default: false }
+              - { label: "Publié (décocher pour masquer)", name: publie, widget: boolean, default: true }
+
+      # ---------------- VIDÉOS ----------------
+      - name: videos
+        label: "🎬 Zingũ TV (vidéos)"
+        file: "data/videos.json"
+        fields:
+          - label: "Vidéos (les 5 premières s'affichent)"
+            name: videos
+            widget: list
+            add_to_top: true
+            collapsed: true
+            label_singular: "vidéo"
+            summary: "{{fields.titre}}"
+            fields:
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Lien (YouTube, Facebook…)", name: lien, widget: string }
+              - { label: "Durée (ex : 05:30)", name: duree, widget: string, required: false }
+              - label: "Rubrique (pour l'illustration par défaut)"
+                name: rubrique
+                widget: select
+                default: societe
+                options:
+                  - { label: "Politique", value: politique }
+                  - { label: "Société", value: societe }
+                  - { label: "Culture & Traditions", value: culture }
+                  - { label: "Économie", value: economie }
+                  - { label: "Sport", value: sport }
+                  - { label: "Éducation", value: education }
+                  - { label: "Santé", value: sante }
+                  - { label: "Faits divers", value: faitsdivers }
+              - { label: "Miniature (facultatif — automatique pour YouTube)", name: image, widget: image, required: false, choose_url: false }
+
+      # ---------------- DÉPÊCHES ----------------
+      - name: depeches
+        label: "⚡ Dernière minute (bandeau)"
+        file: "data/depeches.json"
+        fields:
+          - label: "Dépêches"
+            name: depeches
+            widget: list
+            add_to_top: true
+            label_singular: "dépêche"
+            field: { label: "Texte", name: texte, widget: string }
+
+      # ---------------- AGENDA ----------------
+      - name: agenda
+        label: "📅 Agenda du Haut-Nkam"
+        file: "data/agenda.json"
+        fields:
+          - label: "Événements (seuls ceux à venir s'affichent)"
+            name: evenements
+            widget: list
+            collapsed: true
+            label_singular: "événement"
+            summary: "{{fields.date | date('DD/MM/YYYY')}} — {{fields.titre}}"
+            fields:
+              - { label: "Date", name: date, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Événement", name: titre, widget: string }
+              - { label: "Lieu", name: lieu, widget: string }
+
+      # ---------------- PARAMÈTRES ----------------
+      - name: parametres
+        label: "⚙️ Paramètres du site"
+        file: "data/parametres.json"
+        fields:
+          - { label: "Slogan", name: slogan, widget: string }
+          - { label: "Page Facebook (lien)", name: facebook, widget: string, required: false }
+          - { label: "Chaîne YouTube (lien)", name: youtube, widget: string, required: false }
+          - { label: "Compte TikTok (lien)", name: tiktok, widget: string, required: false }
+          - { label: "Numéro WhatsApp (ex : 237 6XX XX XX XX)", name: whatsapp, widget: string, required: false }
+          - { label: "Téléphone de la rédaction", name: telephone, widget: string, required: false }
+          - { label: "E-mail de la rédaction", name: email, widget: string, required: false }
+          - { label: "Adresse", name: adresse, widget: string, required: false }
