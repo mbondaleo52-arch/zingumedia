@@ -18,12 +18,12 @@ body{background:var(--z-creme)!important;font-family:'Inter',system-ui,sans-seri
 
 /* ---------- Barre du haut ---------- */
 [class*="-AppHeader-css"],[class$="-AppHeader"]{background:var(--z-noir)!important;border-bottom:2px solid var(--z-or-fonce)!important;box-shadow:0 4px 18px rgba(0,0,0,.25)!important}
-[class*="-AppHeaderContent"]{min-height:60px}
-[class*="-AppHeaderContent"]::before{content:"";width:38px;height:38px;border-radius:50%;margin:0 12px 0 4px;flex-shrink:0;background:url(/images/logo.jpg) center/cover;box-shadow:0 0 0 2px var(--z-or)}
+[class*="-AppHeaderContent"]{min-height:60px;align-items:center}
+[class*="-AppHeaderContent"]::before{content:"";align-self:center;width:38px;height:38px;border-radius:50%;margin:0 12px 0 4px;flex-shrink:0;background:url(/images/logo.jpg) center/cover;box-shadow:0 0 0 2px var(--z-or)}
 [class*="-AppHeaderNavList"]::before{content:"ZINGŨ";font:900 20px 'Cinzel',serif;letter-spacing:3px;margin-right:22px;align-self:center;background:var(--z-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 [class*="-AppHeaderNavLink"],[class*="-AppHeaderButton"]{color:#d9d3c5!important;font-weight:600!important;border-bottom:3px solid transparent!important}
 [class*="-AppHeaderNavLink"]:hover,[class*="-AppHeaderButton"]:hover{color:var(--z-or-clair)!important}
-[class*="-AppHeaderNavLink"][class*="Active"],[class*="-AppHeaderNavLink"].active,[class*="-AppHeaderNavLink"][aria-current="page"]{color:var(--z-or)!important;border-bottom-color:var(--z-or)!important}
+[class*="-AppHeaderNavLink"].header-link-active,[class*="-AppHeaderNavLink"][aria-current="page"]{color:var(--z-or)!important;border-bottom-color:var(--z-or)!important}
 [class*="-AppHeaderNavLink"] svg,[class*="-AppHeaderButton"] svg{color:inherit!important;fill:currentColor}
 [class*="-AppHeaderSiteLink"]{color:var(--z-or)!important;font-weight:600!important}
 [class*="-AppHeaderActions"] button[class*="Quick"],[class*="-AppHeaderQuickNewButton"]{background:var(--z-grad)!important;color:#111!important;border-radius:999px!important;font-weight:700!important}
@@ -31,9 +31,9 @@ body{background:var(--z-creme)!important;font-family:'Inter',system-ui,sans-seri
 /* ---------- Colonne de gauche ---------- */
 [class*="-SidebarContainer"]{border-top:4px solid var(--z-or)!important;border-radius:10px!important;box-shadow:0 6px 24px rgba(60,45,10,.08)!important}
 [class*="-SidebarHeading"]{font:900 18px 'Cinzel',serif!important;letter-spacing:1.5px;color:var(--z-noir)!important}
-[class*="-SidebarNavLink"]{font-weight:600!important;color:#3b362b!important;border-left-width:3px!important}
+[class*="-SidebarNavLink"]{font-weight:600!important;color:#3b362b!important;background:transparent!important;border-left:3px solid transparent!important}
 [class*="-SidebarNavLink"]:hover{background:#fbf5e3!important;color:var(--z-or-fonce)!important}
-[class*="-SidebarNavLink"][class*="Active"],[class*="-SidebarNavLink"].active,[class*="-SidebarNavLink"][aria-current="page"]{background:#fbf3dc!important;color:#8a6a1f!important;border-left-color:var(--z-or)!important}
+[class*="-SidebarNavLink"].sidebar-active,[class*="-SidebarNavLink"][aria-current="page"]{background:#fbf3dc!important;color:#8a6a1f!important;border-left-color:var(--z-or)!important}
 [class*="-SidebarNavLink"] svg{color:var(--z-or-fonce)!important}
 [class*="-SearchInput"]:focus{box-shadow:inset 0 0 0 2px var(--z-or)!important}
 
@@ -42,12 +42,13 @@ body{background:var(--z-creme)!important;font-family:'Inter',system-ui,sans-seri
 [class*="-CollectionTopHeading"]{font:900 24px 'Cinzel',serif!important;letter-spacing:1.5px;background:var(--z-grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
 [class*="-CollectionTopDescription"]{color:#cfc7b4!important;font-size:14px!important;line-height:1.5!important}
 [class*="-CollectionTopNewButton"]{background:var(--z-grad)!important;color:#111!important;border-radius:999px!important;font-weight:700!important;padding:0 22px!important;box-shadow:0 4px 16px rgba(212,175,55,.35)!important}
-[class*="-ViewControls"] [class*="Button"][class*="Active"],[class*="-ViewControlsButton"][class*="Active"]{color:var(--z-or-fonce)!important}
+
 
 /* ---------- Cartes d'articles ---------- */
-[class*="-ListCard"],[class*="-GridCard"],[class*="-EntryCard"]{border-radius:8px!important;border:1px solid var(--z-ligne)!important;transition:transform .15s,box-shadow .15s,border-color .15s!important}
-[class*="-ListCard"]:hover,[class*="-GridCard"]:hover{border-color:var(--z-or)!important;box-shadow:0 6px 18px rgba(168,132,42,.18)!important;transform:translateY(-1px)}
-[class*="-ListCard"]{border-left:4px solid var(--z-or)!important}
+[class*="-ListCard-"],[class*="-GridCard-"]{border-radius:8px!important;border:1px solid var(--z-ligne)!important;transition:transform .15s,box-shadow .15s,border-color .15s!important}
+[class*="-ListCard-"]:hover,[class*="-GridCard-"]:hover{border-color:var(--z-or)!important;box-shadow:0 6px 18px rgba(168,132,42,.18)!important;transform:translateY(-1px)}
+[class*="-ListCard-"]{border-left:4px solid var(--z-or)!important;background:#fff!important}
+[class*="-ListCardLink"]{border:none!important}
 [class*="-CardHeading"],[class*="-ListCardTitle"]{font-family:'Source Serif 4',Georgia,serif!important;font-weight:700!important;color:var(--z-texte)!important}
 [class*="-GroupHeading"]{font:700 16px 'Cinzel',serif!important;color:var(--z-or-fonce)!important;letter-spacing:1px}
 
@@ -72,7 +73,7 @@ body{background:var(--z-creme)!important;font-family:'Inter',system-ui,sans-seri
 [class*="-ControlContainer"]:focus-within input,[class*="-ControlContainer"]:focus-within textarea,[class*="-ControlContainer"]:focus-within [class*="-EditorControlBar"],[class*="-ControlContainer"]:focus-within [data-slate-editor]{border-color:var(--z-or-fonce)!important}
 [class*="-ControlHint"]{color:#7d735e!important;font-style:italic;font-size:12.5px!important}
 [class*="-ToggleBackground"]{background:#cfc6b0!important}
-[class*="-ToggleContainer"][aria-checked="true"] [class*="-ToggleBackground"],[class*="-ToggleContainer"][class*="Active"] [class*="-ToggleBackground"]{background:var(--z-or-fonce)!important}
+[class*="-ToggleContainer"][aria-checked="true"] [class*="-ToggleBackground"]{background:var(--z-or-fonce)!important}
 [class*="-FileWidgetButton"],[class*="-AddButton"]{border-radius:999px!important;background:var(--z-noir)!important;color:var(--z-or)!important;font-weight:700!important}
-[class*="-PreviewPaneContainer"]{background:#141414!important}
+[class*="-PreviewPaneContainer"]:not([class*="ControlPaneContainer"]){background:#141414!important}
 [class*="-EditorControlBar"]{border-radius:0 8px 0 0!important}
