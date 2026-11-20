@@ -1,0 +1,19 @@
+{
+  "evenements": [
+    {
+      "date": "2026-11-22",
+      "titre": "Marché périodique (exemple)",
+      "lieu": "Bafang"
+    },
+    {
+      "date": "2026-11-23",
+      "titre": "Finale du tournoi de quartiers (exemple)",
+      "lieu": "Bana"
+    },
+    {
+      "date": "2026-11-29",
+      "titre": "Journée culturelle (exemple)",
+      "lieu": "Kékem"
+    }
+  ]
+}

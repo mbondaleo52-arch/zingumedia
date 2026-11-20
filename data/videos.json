@@ -1,0 +1,39 @@
+{
+  "videos": [
+    {
+      "titre": "Zingũ Journal : l'essentiel de la semaine (exemple)",
+      "lien": "https://www.youtube.com",
+      "duree": "18:42",
+      "rubrique": "politique",
+      "image": ""
+    },
+    {
+      "titre": "Reportage : au cœur des plantations de Kékem (exemple)",
+      "lien": "https://www.youtube.com",
+      "duree": "07:15",
+      "rubrique": "economie",
+      "image": ""
+    },
+    {
+      "titre": "Danses patrimoniales : les images du festival (exemple)",
+      "lien": "https://www.youtube.com",
+      "duree": "04:30",
+      "rubrique": "culture",
+      "image": ""
+    },
+    {
+      "titre": "Le grand entretien (exemple)",
+      "lien": "https://www.youtube.com",
+      "duree": "24:05",
+      "rubrique": "societe",
+      "image": ""
+    },
+    {
+      "titre": "Résumé du derby de Bafang (exemple)",
+      "lien": "https://www.youtube.com",
+      "duree": "05:48",
+      "rubrique": "sport",
+      "image": ""
+    }
+  ]
+}
